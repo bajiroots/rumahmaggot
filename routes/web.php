@@ -36,3 +36,6 @@ Route::resource('detailPermintaanMaggots', App\Http\Controllers\DetailPermintaan
 
 Route::get('detailPermintaanMaggots/create/{id}', [App\Http\Controllers\DetailPermintaanMaggotController::class, 'create'])->name('detailPermintaanMaggots.create');
 
+Route::get('/api/proxy', [App\Http\Controllers\UserController::class, 'proxy']);
+
+

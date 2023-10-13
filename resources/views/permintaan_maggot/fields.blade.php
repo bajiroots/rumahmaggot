@@ -82,4 +82,4 @@
     {!! Form::text('lokasi_pengantaran', null, ['class' => 'form-control','maxlength' => 255,'maxlength' => 255]) !!}
 </div>
     
-    {!! Form::hidden('user_id', auth()->id(), ['class' => 'form-control']) !!}
+{!! Form::hidden('user_id', auth()->id(), ['class' => 'form-control']) !!}

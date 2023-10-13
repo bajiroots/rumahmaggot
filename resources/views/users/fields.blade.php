@@ -74,29 +74,49 @@
                 text: 'Select Kelurahan',
             }));
 
+
+            console.log(selectedKecamatan);
             // Check if a kecamatan is selected
             if (selectedKecamatan) {
+                // Convert selectedKecamatan to a string and keep the first 7 characters
+                const selectedKecamatanStr = selectedKecamatan.toString().substring(0, 7);
+
                 // Make an AJAX request to fetch kelurahan data based on the selected kecamatan
                 $.ajax({
-                    url: 'http://api.samarindakota.go.id/api/v2/generate/data-monografi/monografi-kelurahan',
+                    url: '/api/proxy',
                     type: 'GET',
                     dataType: 'json',
-                    headers: {
-                        'Authorization': 'Bearer ' + bearerToken,
-                    },
-                    data: {
-                        kecamatan_id: selectedKecamatan,
-                    },
                     success: function(data) {
-                        $.each(data, function(index, kelurahan) {
-                            kelurahanSelect.append($('<option>', {
-                                value: kelurahan.id,
-                                text: kelurahan.nama,
-                            }));
-                        });
+                        if (Array.isArray(data)) {
+                            const filteredData = data.filter(item => {
+                                const kelurahanId = item.kelurahan_id.toString().substring(0, 7);
+
+                                if (kelurahanId === selectedKecamatanStr) {
+                                    return true;
+                                }
+                                return false;
+                            });
+
+                            console.log(filteredData);
+
+                            $.each(filteredData, function(index, kelurahan) {
+                                kelurahanSelect.append($('<option>', {
+                                    value: kelurahan.kelurahan_id,
+                                    text: kelurahan.nama,
+                                }));
+                            });
+                        } else {
+                            console.log("Received data is not an array or is empty.");
+                        }
                     },
+                    error: function(jqXHR, textStatus, errorThrown) {
+                        console.error(textStatus, errorThrown);
+                    }
                 });
             }
+
+
+
         });
     </script>
 @endpush
