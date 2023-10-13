@@ -23,3 +23,16 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 
 Route::resource('users', App\Http\Controllers\UserController::class);
+Route::resource('permintaan_maggot', App\Http\Controllers\PermintaanMaggotController::class);
+
+
+Route::resource('produkMaggots', App\Http\Controllers\ProdukMaggotController::class);
+
+Route::post('/get-harga', [App\Http\Controllers\PermintaanMaggotController::class, 'getHarga'])->name('get-harga');
+
+
+
+Route::resource('detailPermintaanMaggots', App\Http\Controllers\DetailPermintaanMaggotController::class);
+
+Route::get('detailPermintaanMaggots/create/{id}', [App\Http\Controllers\DetailPermintaanMaggotController::class, 'create'])->name('detailPermintaanMaggots.create');
+

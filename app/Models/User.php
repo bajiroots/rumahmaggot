@@ -40,7 +40,9 @@ class User extends Authenticatable
         'email_verified_at',
         'password',
         'role',
-        'remember_token'
+        'remember_token',
+        'kecamatan_id',
+        'kelurahan_id',
     ];
 
     /**

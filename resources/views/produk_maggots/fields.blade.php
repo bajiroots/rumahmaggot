@@ -1,0 +1,11 @@
+<!-- Nama Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('nama', 'Nama:') !!}
+    {!! Form::text('nama', null, ['class' => 'form-control','maxlength' => 255,'maxlength' => 255]) !!}
+</div>
+
+<!-- Harga Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('harga', 'Harga:') !!}
+    {!! Form::number('harga', null, ['class' => 'form-control']) !!}
+</div>
